@@ -19,9 +19,8 @@ const complete = () => {
 };
 
 const newQuote = () => {
+  loading();
   const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
-
-  console.log(quote);
 
   // Check quote length to determine styling
   if (quote.text.length > 120) {
@@ -32,10 +31,12 @@ const newQuote = () => {
 
   quoteText.textContent = quote.text;
   authorText.textContent = quote.author;
+  complete();
 };
 
 // Get Quotes from API
 const getQuotes = async () => {
+  loading();
   const apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
   try {
     const response = await fetch(apiUrl);
